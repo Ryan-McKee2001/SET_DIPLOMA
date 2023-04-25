@@ -2,6 +2,7 @@ package com.example.staffProject.alltests;
 
 import com.example.staffProject.apiTestMethods.RequestSpec;
 import com.example.staffProject.apiTestMethods.ResponseSpec;
+import io.restassured.response.Response;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.testng.annotations.BeforeClass;
@@ -35,6 +36,21 @@ public class PostAPI {
                 post("/add-new-staff-member").
                 then().spec(ResponseSpec.responseSpecification()).log();
         int expectedSize = employeesList.size() + 1;
+        int actualSize = getResponseList().size();
+        assertEquals(actualSize, expectedSize);
+    }
+
+    @Test
+    public void addRecordToDatabaseWithIncorrectData() {
+
+        putData.clear();
+        Response response = given().
+                spec(RequestSpec.requestSpec()).
+                body(putData.toJSONString()).
+                when().
+                post("/add-new-staff-member");
+        assertEquals(response.getStatusCode(), 500);
+        int expectedSize = employeesList.size();
         int actualSize = getResponseList().size();
         assertEquals(actualSize, expectedSize);
     }

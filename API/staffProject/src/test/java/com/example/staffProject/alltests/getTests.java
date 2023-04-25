@@ -3,21 +3,20 @@ package com.example.staffProject.alltests;
 import com.example.staffProject.apiTestMethods.RequestSpec;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
-import org.springframework.http.HttpStatusCode;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.Random;
 
+import static com.example.staffProject.helper.statusCodes.OK_STATUS_CODE;
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.preemptive;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class getTests {
 
-    public static final int OK_STATUS_CODE = 200;
+
 
     private static List<Object> employeesList;
 

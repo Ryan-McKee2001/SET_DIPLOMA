@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static com.example.staffProject.alltests.getTests.*;
+import static com.example.staffProject.helper.statusCodes.OK_STATUS_CODE;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
