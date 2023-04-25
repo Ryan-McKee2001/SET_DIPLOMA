@@ -45,7 +45,7 @@ public class StaffController {
         return currentRecord;
     }
 
-    @PutMapping("/add-new-staff-member")
+    @PostMapping("/add-new-staff-member")
     public Management addNewStaffRequest(@RequestBody Map<String, String> bodyReceived ) {
         String forename = bodyReceived.get("forename");
         String surname = bodyReceived.get("surname");
@@ -55,5 +55,15 @@ public class StaffController {
 
         mySQLData.save(newStaffMember);
         return newStaffMember;
+    }
+
+    @DeleteMapping("/delete-staff-member/{id}")
+    public boolean deleteStaffMember(@PathVariable Integer id) {
+
+        if(mySQLData.findById(id).get() != null) {
+            mySQLData.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

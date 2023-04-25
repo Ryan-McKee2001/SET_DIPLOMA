@@ -1,5 +1,7 @@
-package com.example.staffProject;
+package com.example.staffProject.alltests;
 
+import com.example.staffProject.apiTestMethods.RequestSpec;
+import com.example.staffProject.apiTestMethods.ResponseSpec;
 import io.restassured.http.ContentType;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
@@ -8,7 +10,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class DeleteAPI {
+public class PutAPI {
     // Class Object
     JSONObject putData = new JSONObject();
 
@@ -17,19 +19,16 @@ public class DeleteAPI {
         putData.put("forename", "Joe");
         putData.put("surname", "Bloggs");
         putData.put("deptnumber", 333);
-        System.out.println(putData.toJSONString());
     }
 
     @Test
-    public void addRecordToDatabase() {
+    public void updateRecordInDatabase() {
 
         given().
-                header("content-type", "application/json").
-                contentType(ContentType.JSON).
-                accept(ContentType.JSON).
+                spec(RequestSpec.requestSpec()).
                 body(putData.toJSONString()).
                 when().
-                post("http://localhost:8080/add-new-staff-member").
-                then().statusCode(200);
+                post("add-new-staff-member").
+                then().spec(ResponseSpec.responseSpecification()).log();
     }
 }
