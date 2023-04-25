@@ -23,7 +23,7 @@ public class DeleteAPI {
         staffList = getResponseList();
     }
 
-    @Test  // needs to be records in the database for this test
+    @Test
     public void deleteRecordFromDatabase() {
 
         if (staffList.size() <= 0){

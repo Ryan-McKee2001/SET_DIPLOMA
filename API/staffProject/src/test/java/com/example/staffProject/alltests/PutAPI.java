@@ -16,19 +16,18 @@ public class PutAPI {
 
     @BeforeClass
     public void setUp() throws JSONException {
-        putData.put("forename", "Joe");
-        putData.put("surname", "Bloggs");
-        putData.put("deptnumber", 333);
+        putData.put("forename", "Sylvestor");
+        putData.put("surname", "Stallone");
+        putData.put("deptnumber", 432);
     }
 
     @Test
     public void updateRecordInDatabase() {
-
         given().
                 spec(RequestSpec.requestSpec()).
                 body(putData.toJSONString()).
                 when().
-                post("add-new-staff-member").
+                put(String.format("/update-staff/%s", 4)).
                 then().spec(ResponseSpec.responseSpecification()).log();
     }
 }
