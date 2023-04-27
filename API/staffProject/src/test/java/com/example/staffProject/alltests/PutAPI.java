@@ -22,8 +22,6 @@ public class PutAPI {
 
     List<Object> employeeList;
 
-
-
     Object lastEmployee;
 
     @BeforeClass
