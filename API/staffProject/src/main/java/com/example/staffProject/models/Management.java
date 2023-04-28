@@ -17,7 +17,7 @@ public class Management {
     private String surname;
 
     @Column(name = "Dept_Number")
-    private int deptNumber;
+    private int deptnumber;
 
     public Management() {
 
@@ -26,7 +26,7 @@ public class Management {
     public Management(String forename, String surname, int deptName) {
         this.forename = forename;
         this.surname = surname;
-        this.deptNumber = deptName;
+        this.deptnumber = deptName;
     }
 
     public int getManagerNumber() {
@@ -50,10 +50,10 @@ public class Management {
     }
 
     public int getDeptNumber() {
-        return deptNumber;
+        return deptnumber;
     }
 
-    public void setDeptNumber(int deptNumber) {
-        this.deptNumber = deptNumber;
+    public void setDeptNumber(int deptnumber) {
+        this.deptnumber = deptnumber;
     }
 }

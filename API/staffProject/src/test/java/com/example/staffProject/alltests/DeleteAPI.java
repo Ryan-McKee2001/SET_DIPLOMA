@@ -10,6 +10,7 @@ import java.util.List;
 import static com.example.staffProject.alltests.getTests.*;
 import static com.example.staffProject.helper.statusCodes.OK_STATUS_CODE;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -42,7 +43,7 @@ public class DeleteAPI {
     @Test
     public void deleteRecordThatDoesNotExistFromDatabase() {
         Response deleteResponse = deleteByIdAndGetResponse(20);
-        assertEquals(deleteResponse.statusCode(), INTERNAL_SERVER_ERROR_STATUS_CODE);
+        assertEquals(deleteResponse.statusCode(), equalTo(INTERNAL_SERVER_ERROR_STATUS_CODE));
     }
 
     private static Response deleteByIdAndGetResponse(int id) {
