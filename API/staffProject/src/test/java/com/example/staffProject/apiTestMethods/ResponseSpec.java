@@ -10,11 +10,6 @@ import static com.example.staffProject.helper.statusCodes.OK_STATUS_CODE;
 public class ResponseSpec {
 
     private static ResponseSpecification myResponseSpec;
-
-    // this ensures that the response header has the correct status code
-    // and content type
-    // it also carries out a response time test to ensure that the end points
-    // do not take too long to respond.Ideal response time is 0.1 seconds
     public static ResponseSpecification responseSpecification() {
 
         myResponseSpec = new ResponseSpecBuilder().

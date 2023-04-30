@@ -43,7 +43,7 @@ public class DeleteAPI {
     @Test
     public void deleteRecordThatDoesNotExistFromDatabase() {
         Response deleteResponse = deleteByIdAndGetResponse(20);
-        assertEquals(deleteResponse.statusCode(), equalTo(INTERNAL_SERVER_ERROR_STATUS_CODE));
+        assertEquals(deleteResponse.statusCode(), INTERNAL_SERVER_ERROR_STATUS_CODE);
     }
 
     private static Response deleteByIdAndGetResponse(int id) {

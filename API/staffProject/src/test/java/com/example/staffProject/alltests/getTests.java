@@ -6,22 +6,19 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.Random;
 
 import static com.example.staffProject.alltests.PostAPI.requestSpec;
 import static com.example.staffProject.alltests.PostAPI.responseSpec;
 import static com.example.staffProject.helper.statusCodes.OK_STATUS_CODE;
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.responseSpecification;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class getTests {
-
-
 
     private static List<Object> employeesList;
 
@@ -35,6 +32,8 @@ public class getTests {
         assertEquals(getResponseForGetAllEmployees().statusCode(), OK_STATUS_CODE);
         if(employeesList.size() == 0) fail("No staff in database");
     }
+
+
 
     @Test (dependsOnMethods = "getAllStaffTest")
     public void getStaffByID() {
@@ -51,6 +50,26 @@ public class getTests {
                 body("surname", Matchers.equalTo("Bloggs")).
                 body("deptNumber", Matchers.equalTo( 222));
     }
+
+    @Test(dataProvider = "checkExistingRecs")
+    public void originalRecsCheck(int managerNumber, String surname) {
+
+        given().spec(requestSpec).pathParam("managerNumber", managerNumber).
+                get("/get-staff/{managerNumber}").
+                then().spec(responseSpec).
+                body("surname", Matchers.equalTo(surname));
+    }
+
+    @DataProvider(name="checkExistingRecs")
+    public Object[][] createTestDataRecords() {
+        return new Object[][] {
+                {1, "Bloggs"},
+                {2, "Smith"},
+                {3, "Andrews"}
+        };
+    }
+
+
 
     public static List<Object> getResponseList() {
         Response response = getResponseForGetAllEmployees();
